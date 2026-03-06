@@ -22,13 +22,13 @@ Instagram Posts → Download Images → VLM Attribute Extraction → FashionCLIP
 ┌─────────────────────────────────────────────────────────────────┐
 │                         VESTIO PIPELINE                         │
 │                                                                 │
-│  ┌───────────────────┐    ┌──────────────────────────────────┐ │
-│  │ Collectors (TS)    │    │ Processor (Python)               │ │
-│  │                    │    │                                  │ │
-│  │ Instagram → Apify  │───▶│ Download → VLM Extract → Embed  │ │
-│  │ (more platforms    │    │                                  │ │
-│  │  planned)          │    │ • Gemini 2.5 Flash (OpenRouter)  │ │
-│  └───────────────────┘    │ • FashionCLIP (512-dim)          │ │
+│  ┌───────────────────┐     ┌──────────────────────────────────┐ │
+│  │ Collectors (TS)   │     │ Processor (Python)               │ │
+│  │                   │     │                                  │ │
+│  │ Instagram → Apify │───->│ Download → VLM Extract → Embed   │ │
+│  │ (more platforms   │     │                                  │ │
+│  │  planned)         │     │ • Gemini 2.5 Flash (OpenRouter)  │ │
+│  └───────────────────┘     │ • FashionCLIP (512-dim)          │ │
 │                            └──────────────┬───────────────────┘ │
 │                                           │                     │
 │                                           ▼                     │
