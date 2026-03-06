@@ -282,4 +282,4 @@ Test coverage includes:
 
 ## License
 
-MIT
+Apache License 2.0

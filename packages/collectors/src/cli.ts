@@ -1,7 +1,11 @@
 import { writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
+import { config } from 'dotenv';
 import { collectInstagram } from './instagram.js';
 import type { CollectOptions } from './types.js';
+
+// Load .env from project root
+config({ path: join(process.cwd(), '..', '..', '.env') });
 
 async function main() {
   const args = process.argv.slice(2);

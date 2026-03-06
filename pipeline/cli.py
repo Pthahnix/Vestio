@@ -11,6 +11,10 @@ import argparse
 import glob
 import sys
 
+from dotenv import load_dotenv
+
+load_dotenv(dotenv_path="../.env")
+
 
 def cmd_process(args):
     from processor.pipeline import process_raw_posts
