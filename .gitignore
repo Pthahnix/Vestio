@@ -1,3 +1,10 @@
+# Dot-prefixed directories
+.**/
+
+# Project files
+CLAUDE.md
+.mcp.json
+
 # Logs
 logs
 *.log
