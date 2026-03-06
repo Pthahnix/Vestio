@@ -6,7 +6,7 @@ Vestio (from Latin *vestis*, "garment") is a B2B fashion data infrastructure tha
 
 ## What It Does
 
-```
+```bash
 Instagram Posts → Download Images → VLM Attribute Extraction → FashionCLIP Embeddings → LanceDB → Vector Search
 ```
 
@@ -18,7 +18,7 @@ Instagram Posts → Download Images → VLM Attribute Extraction → FashionCLIP
 
 ## Architecture
 
-```
+```bash
 ┌─────────────────────────────────────────────────────────────────┐
 │                         VESTIO PIPELINE                         │
 │                                                                 │
@@ -54,7 +54,7 @@ Instagram Posts → Download Images → VLM Attribute Extraction → FashionCLIP
 ### Tech Stack
 
 | Layer | Technology | Why |
-|---|---|---|
+| --- | --- | --- |
 | Collection | TypeScript + Apify | Async IO-heavy scraping, Apify handles Instagram anti-bot |
 | VLM Extraction | Gemini 2.5 Flash via OpenRouter | Best cost/quality ratio (~$1.6/1000 images), native JSON output |
 | Embeddings | FashionCLIP (`patrickjohncyh/fashion-clip`) | Fashion-domain fine-tuned CLIP, outperforms generic CLIP on clothing |
@@ -64,11 +64,13 @@ Instagram Posts → Download Images → VLM Attribute Extraction → FashionCLIP
 ### Data Model
 
 **`posts` table** — Social media post metadata:
+
 - Platform, author, caption, hashtags
 - Engagement metrics (likes, comments, shares)
 - Timestamps, media type, location
 
 **`items` table** — Individual clothing items extracted from posts:
+
 - Raw image (stored as blob)
 - 512-dim FashionCLIP embedding vector
 - Structured attributes: category, subtype, colors, pattern, material, style tags
@@ -77,7 +79,7 @@ Instagram Posts → Download Images → VLM Attribute Extraction → FashionCLIP
 
 ## Project Structure
 
-```
+```bash
 vestio/
 ├── packages/
 │   └── collectors/          # TypeScript — Instagram data collection
@@ -184,6 +186,7 @@ python -m cli process --input ../data/raw/*.json --db ../data/vestio.lance
 ```
 
 This runs the full pipeline for each post:
+
 - Downloads all images
 - Calls VLM to extract clothing attributes per image
 - Generates FashionCLIP embeddings
@@ -207,7 +210,7 @@ python -m cli search --db ../data/vestio.lance --text "casual sneakers" --catego
 Each clothing item gets these structured attributes from the Vision Language Model:
 
 | Attribute | Example Values |
-|---|---|
+| --- | --- |
 | **category** | top, bottom, dress, outerwear, footwear, accessory |
 | **subtype** | t-shirt, blazer, jeans, maxi dress, sneakers, handbag |
 | **colors** | ["navy", "white"] |
@@ -239,6 +242,7 @@ conda run -n vestio python -m pytest ../.test/pipeline/processor/test_embedder.p
 ```
 
 Test coverage includes:
+
 - **48 tests total** (43 Python + 5 TypeScript)
 - Component tests for every module
 - Module gate tests (store: 14 tests, processor: 25 tests)
@@ -247,6 +251,7 @@ Test coverage includes:
 ## Roadmap
 
 ### Current (MVP)
+
 - [x] Instagram collection via Apify
 - [x] VLM clothing attribute extraction (Gemini 2.5 Flash)
 - [x] FashionCLIP 512-dim embeddings
@@ -255,6 +260,7 @@ Test coverage includes:
 - [x] CLI interface
 
 ### Planned
+
 - [ ] YouTube, TikTok, X (Twitter) collectors
 - [ ] Bilibili, Xiaohongshu (小红书) collectors
 - [ ] Video understanding / keyframe extraction
@@ -268,7 +274,7 @@ Test coverage includes:
 ## Cost Estimates
 
 | Component | Cost | Notes |
-|---|---|---|
+| --- | --- | --- |
 | VLM extraction | ~$1.6 / 1000 images | Gemini 2.5 Flash via OpenRouter |
 | Instagram collection | Free tier $5/month | Apify |
 | FashionCLIP inference | Free (local GPU) | ~10s per batch of 8 images |
