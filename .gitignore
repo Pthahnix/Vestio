@@ -1,9 +1,23 @@
 # Dot-prefixed directories
 .**/
+!.test/
 
 # Project files
 CLAUDE.md
 .mcp.json
+
+# Data
+data/raw/*.json
+data/processed/
+*.lance
+
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+
+# Build
+dist/
 
 # Logs
 logs

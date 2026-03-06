@@ -1,0 +1,13 @@
+{
+  "name": "vestio",
+  "private": true,
+  "workspaces": ["packages/*"],
+  "scripts": {
+    "collect": "npm run --workspace=packages/collectors start --",
+    "test:ts": "npm run --workspace=packages/collectors test",
+    "test": "npm run test:ts && cd pipeline && python -m pytest ../.test/pipeline/ -v"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
