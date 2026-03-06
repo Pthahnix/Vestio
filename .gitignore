@@ -1,6 +1,5 @@
 # Dot-prefixed directories
-.**/
-!.test/
+.*/
 
 # Project files
 CLAUDE.md
